@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NewJeans — Official Fan Archive</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐰</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@200;300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0d0b09;--bg2:#141210;--bg3:#1c1916;
+  --gold:#c8a96e;--gold2:#e0c48a;
+  --cream:#f0e6d3;--muted:#6b5f50;--white:#faf6f0;--accent:#d4826a;--text:#e8ddd0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Jost','Noto Sans KR',sans-serif;font-weight:300;overflow-x:hidden;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,11,9,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,169,110,0.15);}
+.logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;letter-spacing:0.1em;color:var(--white);}
+.logo em{color:var(--gold);font-style:italic;}
+nav{display:flex;gap:28px;}
+nav a{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color 0.3s;}
+nav a:hover{color:var(--gold);}
+
+/* HERO */
+.hero{height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(200,169,110,0.07) 0%,transparent 70%),linear-gradient(180deg,transparent 60%,var(--bg) 100%);z-index:1;}
+.particles{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.p-dot{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;opacity:0;animation:float var(--dur,8s) var(--delay,0s) infinite ease-in-out;}
+@keyframes float{0%,100%{opacity:0;transform:translateY(0) scale(0);}20%,80%{opacity:var(--op,0.4);}50%{transform:translateY(-80px) scale(1);}}
+.hero-content{position:relative;z-index:2;}
+.hero-badge{display:inline-block;font-size:0.62rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,169,110,0.4);padding:6px 20px;margin-bottom:32px;opacity:0;animation:fadeUp 1s 0.3s forwards;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(5rem,13vw,11rem);font-weight:700;line-height:0.88;color:var(--white);opacity:0;animation:fadeUp 1s 0.5s forwards;}
+.hero-title em{color:var(--gold);font-style:italic;}
+.hero-members{margin-top:28px;font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeUp 1s 0.8s forwards;}
+.hero-members span{color:var(--gold);}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;animation:pulse 2s infinite;}
+.hero-scroll::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* MARQUEE */
+.marquee-section{padding:18px 0;background:var(--bg3);border-top:1px solid rgba(200,169,110,0.1);border-bottom:1px solid rgba(200,169,110,0.1);overflow:hidden;}
+.mtrack{display:flex;gap:48px;width:max-content;animation:marquee 50s linear infinite;}
+.mtrack span{font-family:'Playfair Display',serif;font-size:0.9rem;font-style:italic;color:rgba(200,169,110,0.35);white-space:nowrap;transition:color 0.3s;}
+.mtrack span.now{color:var(--gold);}
+@keyframes marquee{to{transform:translateX(-50%);}}
+
+/* SECTION */
+.section{padding:120px 0;}
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+.s-label{font-size:0.6rem;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:400;line-height:1;color:var(--white);margin-bottom:64px;}
+.s-title em{font-style:italic;color:var(--gold);}
+.gold-line{height:1px;background:linear-gradient(to right,var(--gold),transparent);opacity:0.15;}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:280px 280px;gap:12px;}
+.gallery-item{position:relative;overflow:hidden;cursor:pointer;background:var(--bg3);}
+.gallery-item:first-child{grid-row:span 2;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease,filter 0.5s;filter:brightness(0.85) saturate(0.85);}
+.gallery-item:hover img{transform:scale(1.06);filter:brightness(1) saturate(1);}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,11,9,0.7) 0%,transparent 50%);opacity:0;transition:opacity 0.3s;}
+.gallery-item:hover .gallery-overlay{opacity:1;}
+.gallery-caption{position:absolute;bottom:16px;left:16px;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream);opacity:0;transform:translateY(8px);transition:all 0.3s;}
+.gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0);}
+.gallery-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:4rem;color:var(--gold);opacity:0.15;}
+
+/* VIDEO GRID */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.video-card{background:var(--bg3);border:1px solid rgba(200,169,110,0.1);overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s,border-color 0.3s,box-shadow 0.3s;}
+.video-card.visible{opacity:1;transform:translateY(0);}
+.video-card:hover{border-color:rgba(200,169,110,0.4);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.vthumb{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;}
+.vthumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.video-card:hover .vthumb img{transform:scale(1.04);}
+.voverlay{position:absolute;inset:0;background:rgba(13,11,9,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.voverlay:hover{background:rgba(13,11,9,0.05);}
+.play-icon{width:54px;height:54px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;background:rgba(13,11,9,0.5);transition:all 0.3s;}
+.voverlay:hover .play-icon{background:var(--gold);color:var(--bg);transform:scale(1.1);}
+.vinfo{padding:18px 20px;}
+.vtag{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.vtitle{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:3px;}
+.vdesc{font-size:0.7rem;color:var(--muted);}
+
+/* MEMBERS */
+.members-section{background:var(--bg2);}
+.member-feature{display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateX(-20px);transition:opacity 0.7s,transform 0.7s;overflow:hidden;margin-bottom:2px;}
+.member-feature:nth-child(even){direction:rtl;}
+.member-feature:nth-child(even)>*{direction:ltr;}
+.member-feature.visible{opacity:1;transform:translateX(0);}
+.member-photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg3);}
+.member-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:brightness(0.88) contrast(1.05) saturate(0.85);transition:all 0.8s;}
+.member-feature:hover .member-photo img{filter:brightness(1) contrast(1) saturate(1);transform:scale(1.03);}
+.member-ph-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:8rem;color:var(--gold);opacity:0.12;background:linear-gradient(135deg,var(--bg3),var(--bg));}
+.member-block{padding:60px 48px;display:flex;flex-direction:column;justify-content:center;background:var(--bg2);position:relative;}
+.member-block::before{content:'';position:absolute;top:40px;left:0;width:3px;height:60px;background:var(--gold);}
+.member-feature:nth-child(even) .member-block::before{left:auto;right:0;}
+.m-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:700;font-style:italic;color:rgba(200,169,110,0.07);position:absolute;top:20px;right:32px;line-height:1;}
+.m-name{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;color:var(--white);line-height:1;margin-bottom:4px;}
+.m-name-ko{font-size:0.8rem;letter-spacing:0.3em;color:var(--gold);margin-bottom:28px;}
+.m-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;margin-bottom:24px;}
+.stat-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.stat-val{font-size:0.86rem;color:var(--white);}
+.m-desc{font-size:0.82rem;line-height:1.85;color:var(--muted);border-top:1px solid rgba(200,169,110,0.1);padding-top:20px;}
+.m-badge{display:inline-block;margin-top:16px;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;padding:5px 14px;border:1px solid rgba(200,169,110,0.3);color:var(--gold);}
+
+/* DISCO */
+.disco-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scrollbar-width:thin;scrollbar-color:var(--gold) var(--bg3);}
+.disco-scroll::-webkit-scrollbar{height:3px;}
+.disco-scroll::-webkit-scrollbar-thumb{background:var(--gold);}
+.album-card{flex-shrink:0;width:196px;cursor:pointer;transition:transform 0.3s;}
+.album-card:hover{transform:translateY(-6px);}
+.album-cover{width:196px;height:196px;background:var(--bg3);border:1px solid rgba(200,169,110,0.1);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin-bottom:14px;}
+.ac-art{font-family:'Playfair Display',serif;font-size:3rem;font-style:italic;color:var(--gold);opacity:0.45;}
+.ac-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(200,169,110,0.07),transparent 70%);}
+.a-type{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.a-name{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:3px;}
+.a-date{font-size:0.7rem;color:var(--muted);}
+.a-tracks{font-size:0.7rem;color:var(--muted);margin-top:6px;line-height:1.7;}
+
+/* TIMELINE */
+.timeline-wrap{position:relative;padding-left:32px;}
+.timeline-wrap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(200,169,110,0.05) 90%,transparent);}
+.tl{position:relative;padding:0 0 48px 32px;opacity:0;transform:translateY(16px);transition:all 0.6s;}
+.tl.visible{opacity:1;transform:translateY(0);}
+.tl::before{content:'';position:absolute;left:-4px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px rgba(200,169,110,0.6);}
+.tl-yr{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.tl-head{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:var(--white);margin-bottom:8px;}
+.tl-body{font-size:0.82rem;line-height:1.8;color:var(--muted);max-width:580px;}
+.tl-pill{display:inline-block;margin-top:10px;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;padding:3px 12px;border:1px solid rgba(200,169,110,0.3);color:var(--gold);border-radius:20px;}
+
+/* CONCERTS */
+.concert-row{display:grid;grid-template-columns:140px 1fr 110px;gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid rgba(200,169,110,0.08);opacity:0;transform:translateX(-12px);transition:all 0.5s;}
+.concert-row.visible{opacity:1;transform:translateX(0);}
+.concert-row:hover{border-bottom-color:rgba(200,169,110,0.3);}
+.c-date{font-family:'Playfair Display',serif;font-size:0.85rem;color:var(--gold);}
+.c-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--white);margin-bottom:4px;}
+.c-venue{font-size:0.75rem;color:var(--muted);}
+.c-badge{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;padding:5px 12px;border-radius:20px;text-align:center;}
+.c-done{background:rgba(200,169,110,0.1);color:var(--gold);}
+.c-soon{background:rgba(212,130,106,0.15);color:var(--accent);}
+
+/* GUESTBOOK */
+.gb-section{background:var(--bg2);}
+.gb-grid{display:grid;grid-template-columns:1fr 400px;gap:48px;align-items:start;}
+.gb-form{background:var(--bg3);border:1px solid rgba(200,169,110,0.12);padding:40px;}
+.gb-lbl{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block;}
+.gb-input{width:100%;background:var(--bg);border:1px solid rgba(200,169,110,0.15);padding:14px 18px;font-family:'Jost',sans-serif;font-size:0.85rem;color:var(--text);outline:none;transition:border-color 0.3s;margin-bottom:16px;display:block;}
+.gb-input:focus{border-color:var(--gold);}
+textarea.gb-input{resize:vertical;min-height:130px;}
+.gb-btn{width:100%;padding:15px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.gb-btn:hover{background:var(--gold);color:var(--bg);}
+.gb-btn:disabled{opacity:0.4;cursor:not-allowed;}
+.gb-cd{font-size:0.72rem;color:var(--muted);margin-top:12px;text-align:center;min-height:20px;}
+.gb-feed{display:flex;flex-direction:column;gap:12px;max-height:500px;overflow-y:auto;padding-right:6px;}
+.gb-card{background:var(--bg3);border:1px solid rgba(200,169,110,0.08);padding:20px 22px;animation:slideUp 0.4s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.gb-text{font-size:0.83rem;line-height:1.8;color:var(--text);}
+.gb-meta{margin-top:12px;font-size:0.62rem;color:var(--muted);display:flex;justify-content:space-between;}
+.gb-anon{color:var(--gold);}
+
+/* PLAYER */
+.player{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(8,7,5,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(200,169,110,0.2);padding:0 48px;height:68px;display:flex;align-items:center;gap:24px;}
+.p-info{flex:0 0 220px;}
+.p-song{font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.p-artist{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.p-controls{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.p-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:0.75rem;transition:color 0.2s;font-family:'Jost',sans-serif;}
+.p-btn:hover{color:var(--gold);}
+.p-play{width:38px;height:38px;border-radius:50%;border:1px solid var(--gold);background:none;color:var(--gold);font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.p-play:hover{background:var(--gold);color:var(--bg);}
+.p-progress{flex:1;display:flex;flex-direction:column;gap:5px;}
+.p-bar{width:100%;height:2px;background:rgba(200,169,110,0.15);cursor:pointer;position:relative;border-radius:1px;}
+.p-fill{height:100%;background:var(--gold);border-radius:1px;width:0;transition:width 0.5s linear;}
+.p-time{display:flex;justify-content:space-between;font-size:0.6rem;color:var(--muted);}
+.p-vol{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.p-vol-lbl{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+input[type=range]{width:72px;accent-color:var(--gold);cursor:pointer;}
+
+/* FOOTER */
+footer{background:var(--bg);padding:60px 48px 88px;text-align:center;border-top:1px solid rgba(200,169,110,0.1);}
+.f-logo{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--white);letter-spacing:0.05em;margin-bottom:16px;}
+.f-logo em{color:var(--gold);font-style:italic;}
+.f-text{font-size:0.72rem;letter-spacing:0.12em;color:var(--muted);line-height:2.2;}
+.f-update{display:inline-block;margin-top:24px;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;padding:6px 18px;border:1px solid rgba(200,169,110,0.2);color:var(--gold);}
+
+/* FADE UTIL */
+.fi{opacity:0;transform:translateY(20px);transition:opacity 0.7s,transform 0.7s;}
+.fi.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{display:none;}header{padding:0 24px;}.container{padding:0 24px;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gallery-item:first-child{grid-row:auto;grid-column:span 2;}
+  .video-grid{grid-template-columns:1fr;}
+  .member-feature{grid-template-columns:1fr;}
+  .member-feature:nth-child(even){direction:ltr;}
+  .member-block{padding:32px 24px;}
+  .gb-grid{grid-template-columns:1fr;}
+  .player{padding:0 24px;}.p-progress{display:none;}
+  .concert-row{grid-template-columns:1fr;gap:6px;}
+}
+
+/* VIDEO MODAL */
+#vmodal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">New<em>Jeans</em> 🐰</div>
+  <nav>
+    <a href="#gallery">갤러리</a>
+    <a href="#videos">영상</a>
+    <a href="#members">멤버</a>
+    <a href="#discography">음악</a>
+    <a href="#history">역사</a>
+    <a href="#concerts">공연</a>
+    <a href="#guestbook">방명록</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="particles" id="pc"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">ADOR · HYBE · Est. 2022</div>
+    <h1 class="hero-title">New<em>Jeans</em></h1>
+    <p class="hero-members"><span>민지</span> · <span>하니</span> · <span>다니엘</span> · <span>해린</span> · <span>혜인</span></p>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="mtrack" id="mtrack">
+    <span>Attention</span><span>Hype Boy</span><span>Hurt</span><span>Cookie</span><span>Ditto</span><span>OMG</span><span>Super Shy</span><span>ETA</span><span>Cool With You</span><span>Get Up</span><span>ASAP</span><span>How Sweet</span><span>Bubble Gum</span><span>Supernatural</span><span>Right Now</span><span>Manito</span>
+    <span>Attention</span><span>Hype Boy</span><span>Hurt</span><span>Cookie</span><span>Ditto</span><span>OMG</span><span>Super Shy</span><span>ETA</span><span>Cool With You</span><span>Get Up</span><span>ASAP</span><span>How Sweet</span><span>Bubble Gum</span><span>Supernatural</span><span>Right Now</span><span>Manito</span>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+  <div class="container">
+    <p class="s-label fi">Gallery</p>
+    <h2 class="s-title fi">뉴진스의<br><em>순간들</em></h2>
+    <div class="gallery-grid fi">
+      <!-- 실제 이미지 URL을 src에 넣어주세요. 현재는 공개 Unsplash 이미지 사용 -->
+      <div class="gallery-item">
+        <img src="https://cdn.topstarnews.net/news/photo/202308/15386262_1166181_4957.jpg" alt="NewJeans Concept">
+        <div class="gallery-overlay"></div><div class="gallery-caption">Concept Art 2024</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.pinimg.com/originals/c9/05/2f/c9052fe0257bfcdddc7b573c3447297a.jpg" alt="Concert">
+        <div class="gallery-overlay"></div><div class="gallery-caption">World Tour</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://photo.newsen.com/news_photo/2023/03/15/202303151308421810_1.jpg" alt="Stage">
+        <div class="gallery-overlay"></div><div class="gallery-caption">Bunnies Camp</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://image.xportsnews.com/contents/images/upload/article/2024/0620/1718848670753010.jpg" alt="Performance">
+        <div class="gallery-overlay"></div><div class="gallery-caption">Get Up Tour</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.pinimg.com/736x/37/d2/b6/37d2b6f7afa870c5e4ac1fcda1fca6bf.jpg" alt="Studio">
+        <div class="gallery-overlay"></div><div class="gallery-caption">Studio Session</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- VIDEOS -->
+<section class="section" id="videos">
+  <div class="container">
+    <p class="s-label fi">Music Videos</p>
+    <h2 class="s-title fi">뮤직비디오</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="vthumb" onclick="openVideo('js1CtxSY38I')">
+          <img src="https://img.youtube.com/vi/js1CtxSY38I/maxresdefault.jpg" alt="Attention">
+          <div class="voverlay"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="vinfo"><div class="vtag">Official MV · 2022</div><div class="vtitle">Attention</div><div class="vdesc">데뷔 싱글 · EP NewJeans</div></div>
+      </div>
+      <div class="video-card">
+        <div class="vthumb" onclick="openVideo('11cta61wi0g')">
+          <img src="https://img.youtube.com/vi/11cta61wi0g/maxresdefault.jpg" alt="Hype Boy">
+          <div class="voverlay"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="vinfo"><div class="vtag">Official MV · 2022</div><div class="vtitle">Hype Boy</div><div class="vdesc">차트 1위 · 국민 히트곡</div></div>
+      </div>
+      <div class="video-card">
+        <div class="vthumb" onclick="openVideo('Km71Rr9K-Bw')">
+          <img src="https://img.youtube.com/vi/Km71Rr9K-Bw/maxresdefault.jpg" alt="Ditto">
+          <div class="voverlay"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="vinfo"><div class="vtag">Official MV · 2023</div><div class="vtitle">Ditto</div><div class="vdesc">멜론 역대 최장 기간 1위</div></div>
+      </div>
+      <div class="video-card">
+        <div class="vthumb" onclick="openVideo('sVTy_wmn5SU')">
+          <img src="https://img.youtube.com/vi/sVTy_wmn5SU/maxresdefault.jpg" alt="OMG">
+          <div class="voverlay"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="vinfo"><div class="vtag">Official MV · 2023</div><div class="vtitle">OMG</div><div class="vdesc">Single Album · 차트 1위</div></div>
+      </div>
+      <div class="video-card">
+        <div class="vthumb" onclick="openVideo('ArmDp-zijuc')">
+          <img src="https://img.youtube.com/vi/ArmDp-zijuc/maxresdefault.jpg" alt="Super Shy">
+          <div class="voverlay"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="vinfo"><div class="vtag">Official MV · 2023</div><div class="vtitle">Super Shy</div><div class="vdesc">빌보드 글로벌 200 진입</div></div>
+      </div>
+      <div class="video-card">
+        <div class="vthumb" onclick="openVideo('Q3K0TOvTOno')">
+          <img src="https://img.youtube.com/vi/Q3K0TOvTOno/maxresdefault.jpg" alt="How Sweet">
+          <div class="voverlay"><div class="play-icon">▶</div></div>
+        </div>
+        <div class="vinfo"><div class="vtag">Official MV · 2024</div><div class="vtitle">How Sweet</div><div class="vdesc">코첼라 무대 · 2024</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div id="vmodal">
+  <div style="width:min(880px,90vw);aspect-ratio:16/9">
+    <iframe id="vframe" src="" style="width:100%;height:100%;border:none" allowfullscreen></iframe>
+  </div>
+  <button onclick="closeVideo()" style="background:none;border:1px solid rgba(200,169,110,0.4);color:var(--gold);padding:8px 24px;font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;margin-top:8px;">✕ 닫기</button>
+</div>
+
+<div class="gold-line"></div>
+
+<!-- MEMBERS -->
+<section class="section members-section" id="members">
+  <div class="container"><p class="s-label fi">Members</p><h2 class="s-title fi">다섯 명의<br><em>아티스트</em></h2></div>
+
+  <!-- 01 MINJI -->
+  <div class="member-feature">
+    <div class="member-photo">
+      <img src="https://dimg.donga.com/wps/SPORTS/IMAGE/2023/11/08/122091554.1.jpg" alt="민지">
+      <div class="member-ph-fallback" style="background:linear-gradient(135deg,#1c1612,#0d0b09);">
+        <span style="font-size:10rem;opacity:0.18">민</span>
+      </div>
+    </div>
+    <div class="member-block">
+      <div class="m-num">01</div>
+      <div class="m-name">Minji</div>
+      <div class="m-name-ko">김 민 지 · KIM MINJI</div>
+      <div class="m-stats">
+        <div><div class="stat-label">생년월일</div><div class="stat-val">2004. 05. 07</div></div>
+        <div><div class="stat-label">출생지</div><div class="stat-val">서울 🇰🇷</div></div>
+        <div><div class="stat-label">혈액형</div><div class="stat-val">A형</div></div>
+        <div><div class="stat-label">신장</div><div class="stat-val">171 cm</div></div>
+        <div><div class="stat-label">MBTI</div><div class="stat-val">INFJ</div></div>
+        <div><div class="stat-label">포지션</div><div class="stat-val">리더 · 보컬</div></div>
+      </div>
+      <div class="m-desc">뉴진스의 리더. 안정적이고 맑은 보컬과 뛰어난 비주얼로 그룹을 이끌어가고 있다. 차분하고 성숙한 분위기로 팬들에게 큰 사랑을 받으며, 다양한 명품 브랜드의 글로벌 앰배서더로 활약 중이다.</div>
+      <span class="m-badge">Leader · Main Vocal</span>
+    </div>
+  </div>
+
+  <!-- 02 HANNI -->
+  <div class="member-feature">
+    <div class="member-photo">
+      <img src="https://www.elle.co.kr/resources_old/online/org_online_image/el/2c70c752-7c44-40d1-826e-9298f2f18709.jpg" alt="하니">
+      <div class="member-ph-fallback" style="background:linear-gradient(135deg,#1a1510,#0d0b09);">
+        <span style="font-size:10rem;opacity:0.18">하</span>
+      </div>
+    </div>
+    <div class="member-block">
+      <div class="m-num">02</div>
+      <div class="m-name">Hanni</div>
+      <div class="m-name-ko">팜 응옥 한 · PHAM NGOC HAN</div>
+      <div class="m-stats">
+        <div><div class="stat-label">생년월일</div><div class="stat-val">2004. 10. 06</div></div>
+        <div><div class="stat-label">출생지</div><div class="stat-val">멜버른 🇦🇺</div></div>
+        <div><div class="stat-label">혈액형</div><div class="stat-val">A형</div></div>
+        <div><div class="stat-label">신장</div><div class="stat-val">163 cm</div></div>
+        <div><div class="stat-label">MBTI</div><div class="stat-val">ENFJ</div></div>
+        <div><div class="stat-label">국적</div><div class="stat-val">베트남계 호주</div></div>
+      </div>
+      <div class="m-desc">베트남계 호주인으로, 밝고 에너지 넘치는 성격으로 그룹의 분위기 메이커 역할을 한다. 영어와 한국어 모두 능숙하며, 특유의 사랑스러운 매력으로 글로벌 팬들에게 압도적인 인기를 얻고 있다.</div>
+      <span class="m-badge">Vocal · Dancer</span>
+    </div>
+  </div>
+
+  <!-- 03 DANIELLE -->
+  <div class="member-feature">
+    <div class="member-photo">
+      <img src="https://img.wkorea.com/w/2024/04/style_660b6b14839c2-1120x1400.jpg" alt="다니엘">
+      <div class="member-ph-fallback" style="background:linear-gradient(135deg,#1c1510,#0d0b09);">
+        <span style="font-size:10rem;opacity:0.18">다</span>
+      </div>
+    </div>
+    <div class="member-block">
+      <div class="m-num">03</div>
+      <div class="m-name">Danielle</div>
+      <div class="m-name-ko">모나 다니엘 · MONA DANIEL</div>
+      <div class="m-stats">
+        <div><div class="stat-label">생년월일</div><div class="stat-val">2005. 04. 11</div></div>
+        <div><div class="stat-label">출생지</div><div class="stat-val">브리즈번 🇦🇺</div></div>
+        <div><div class="stat-label">혈액형</div><div class="stat-val">O형</div></div>
+        <div><div class="stat-label">신장</div><div class="stat-val">163 cm</div></div>
+        <div><div class="stat-label">MBTI</div><div class="stat-val">ENFP</div></div>
+        <div><div class="stat-label">국적</div><div class="stat-val">한국계 호주</div></div>
+      </div>
+      <div class="m-desc">한국계 호주인으로 서울에서 성장했다. 뛰어난 외모와 안정적인 보컬·퍼포먼스 실력을 갖추고 있다. 유머 감각이 넘치고 밝은 성격으로 팬들에게 특별히 친근감을 주는 멤버다.</div>
+      <span class="m-badge">Vocal · Dancer</span>
+    </div>
+  </div>
+
+  <!-- 04 HAERIN -->
+  <div class="member-feature">
+    <div class="member-photo">
+      <img src="https://photo.newsen.com/news_photo/2023/10/06/202310061704093510_1.jpg" alt="해린">
+      <div class="member-ph-fallback" style="background:linear-gradient(135deg,#191614,#0d0b09);">
+        <span style="font-size:10rem;opacity:0.18">해</span>
+      </div>
+    </div>
+    <div class="member-block">
+      <div class="m-num">04</div>
+      <div class="m-name">Haerin</div>
+      <div class="m-name-ko">강 해 린 · KANG HAERIN</div>
+      <div class="m-stats">
+        <div><div class="stat-label">생년월일</div><div class="stat-val">2006. 05. 15</div></div>
+        <div><div class="stat-label">출생지</div><div class="stat-val">부산 🇰🇷</div></div>
+        <div><div class="stat-label">혈액형</div><div class="stat-val">B형</div></div>
+        <div><div class="stat-label">신장</div><div class="stat-val">162 cm</div></div>
+        <div><div class="stat-label">MBTI</div><div class="stat-val">INTJ</div></div>
+        <div><div class="stat-label">포지션</div><div class="stat-val">보컬 · 래퍼</div></div>
+      </div>
+      <div class="m-desc">고양이 같은 신비로운 매력으로 팬들을 사로잡는 멤버. 무대 위에서는 강렬한 카리스마를 발휘하며, 독특한 분위기가 특징이다. 독서와 미술을 즐기는 아티스틱한 감성을 지녔다.</div>
+      <span class="m-badge">Vocal · Rapper</span>
+    </div>
+  </div>
+
+  <!-- 05 HYEIN -->
+  <div class="member-feature">
+    <div class="member-photo">
+      <img src="https://mblogthumb-phinf.pstatic.net/MjAyNDA1MjlfMjUg/MDAxNzE2OTg5MTg4NTk5.g9j19DqiRl56SxgR3EfxU8U2I4L_kb0ay_DuqjS7-Pkg.Eqv3jscMu5b7_edZnolYmXLwSzsFO5Y9n8Ds6jv6Tdgg.JPEG/ed74d058d333b4506acdc2e7cc1708dd.jpg?type=w800" alt="혜인">
+      <div class="member-ph-fallback" style="background:linear-gradient(135deg,#1a1713,#0d0b09);">
+        <span style="font-size:10rem;opacity:0.18">혜</span>
+      </div>
+    </div>
+    <div class="member-block">
+      <div class="m-num">05</div>
+      <div class="m-name">Hyein</div>
+      <div class="m-name-ko">이 혜 인 · LEE HYEIN</div>
+      <div class="m-stats">
+        <div><div class="stat-label">생년월일</div><div class="stat-val">2008. 04. 21</div></div>
+        <div><div class="stat-label">출생지</div><div class="stat-val">인천 🇰🇷</div></div>
+        <div><div class="stat-label">혈액형</div><div class="stat-val">A형</div></div>
+        <div><div class="stat-label">신장</div><div class="stat-val">168 cm</div></div>
+        <div><div class="stat-label">MBTI</div><div class="stat-val">ISFP</div></div>
+        <div><div class="stat-label">포지션</div><div class="stat-val">막내 · 댄서</div></div>
+      </div>
+      <div class="m-desc">뉴진스의 막내로, 어린 나이에도 뛰어난 퍼포먼스와 당당한 무대 매너로 주목받고 있다. 긴 팔다리와 뛰어난 비율을 자랑하며, 쿨한 분위기로 패션계의 주목을 받는 차세대 아이콘이다.</div>
+      <span class="m-badge">Maknae · Main Dancer</span>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- DISCOGRAPHY -->
+<section class="section" id="discography">
+  <div class="container">
+    <p class="s-label fi">Discography</p>
+    <h2 class="s-title fi">음반 목록</h2>
+    <div class="disco-scroll fi">
+      <div class="album-card"><div class="album-cover"><div class="ac-glow"></div><div class="ac-art">NJ</div></div><div class="a-type">EP · 데뷔</div><div class="a-name">NewJeans</div><div class="a-date">2022. 07. 22</div><div class="a-tracks">Attention · Hype Boy · Hurt · Cookie · Fans</div></div>
+      <div class="album-card"><div class="album-cover"><div class="ac-glow"></div><div class="ac-art">OMG</div></div><div class="a-type">Single Album</div><div class="a-name">OMG</div><div class="a-date">2023. 01. 02</div><div class="a-tracks">Ditto · OMG</div></div>
+      <div class="album-card"><div class="album-cover"><div class="ac-glow"></div><div class="ac-art">GU</div></div><div class="a-type">Mini Album · 2nd</div><div class="a-name">Get Up</div><div class="a-date">2023. 07. 21</div><div class="a-tracks">New Jeans · Super Shy · ETA · Cool With You · Get Up · ASAP</div></div>
+      <div class="album-card"><div class="album-cover"><div class="ac-glow"></div><div class="ac-art">HS</div></div><div class="a-type">Single Album</div><div class="a-name">How Sweet</div><div class="a-date">2024. 05. 24</div><div class="a-tracks">How Sweet · Manito</div></div>
+      <div class="album-card"><div class="album-cover"><div class="ac-glow"></div><div class="ac-art">BG</div></div><div class="a-type">Single Album</div><div class="a-name">Bubble Gum</div><div class="a-date">2024. 05. 24</div><div class="a-tracks">Bubble Gum · Right Now</div></div>
+      <div class="album-card"><div class="album-cover"><div class="ac-glow"></div><div class="ac-art">SN</div></div><div class="a-type">Single · Nike</div><div class="a-name">Supernatural</div><div class="a-date">2024. 06. 21</div><div class="a-tracks">Supernatural · Right Now</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- HISTORY -->
+<section class="section" id="history">
+  <div class="container">
+    <p class="s-label fi">History</p>
+    <h2 class="s-title fi">설립부터<br><em>지금까지</em></h2>
+    <div class="timeline-wrap">
+      <div class="tl"><div class="tl-yr">2021</div><div class="tl-head">ADOR 설립 — 새 시대의 예고</div><div class="tl-body">민희진 대표가 HYBE 산하 레이블 ADOR를 이끌며 차세대 걸그룹 기획에 착수. Y2K, 90년대 R&B, 하이틴 감성을 현대적으로 재해석하는 독창적인 방향성을 확립했다.</div><span class="tl-pill">레이블 설립</span></div>
+      <div class="tl"><div class="tl-yr">2022. 07. 22</div><div class="tl-head">공식 데뷔 — Attention</div><div class="tl-body">데뷔 EP 《NewJeans》와 "Attention"으로 공식 데뷔. MV 선공개 후 음원·앨범 동시 발매라는 파격 방식을 도입하여 데뷔 직후 음원 차트를 휩쓸었다.</div><span class="tl-pill">데뷔</span></div>
+      <div class="tl"><div class="tl-yr">2022. 08</div><div class="tl-head">Hype Boy — 국민 노래 등극</div><div class="tl-body">멜론·지니 등 주요 차트 1위 석권. 커버 챌린지가 SNS에 퍼지며 글로벌 팬덤 형성. 데뷔 1달 만에 4세대 K-pop 아이콘으로 자리매김했다.</div><span class="tl-pill">차트 1위</span></div>
+      <div class="tl"><div class="tl-yr">2023. 01. 02</div><div class="tl-head">OMG — 역사를 다시 쓰다</div><div class="tl-body">"Ditto"와 "OMG"가 동시에 멜론 1·2위 기록. "Ditto"는 멜론 TOP100 역대 최장 기간 1위라는 전무후무한 신기록을 세우며 K-pop 역사에 이름을 남겼다.</div><span class="tl-pill">역사적 기록</span></div>
+      <div class="tl"><div class="tl-yr">2023. 07. 21</div><div class="tl-head">Get Up — 글로벌 공략 성공</div><div class="tl-body">미니앨범 《Get Up》 발매. "Super Shy"로 빌보드 글로벌 200·핫100 동시 진입. "ETA", "Cool With You" 등 수록곡 모두 히트를 기록했다.</div><span class="tl-pill">글로벌 차트</span></div>
+      <div class="tl"><div class="tl-yr">2023. 09</div><div class="tl-head">Bunnies Camp 2023 월드 투어</div><div class="tl-body">서울 KSPO돔을 시작으로 미국·유럽·아시아를 아우르는 첫 월드 투어 진행. 전 회차 매진으로 글로벌 아티스트로서 입지를 굳혔다.</div><span class="tl-pill">월드 투어</span></div>
+      <div class="tl"><div class="tl-yr">2024. 04. 14</div><div class="tl-head">Coachella — K-pop 역사 새로 써</div><div class="tl-body">코첼라 페스티벌에 역대 최연소 K-pop 그룹으로 무대에 오름. "How Sweet" 공개와 맞물려 전 세계 팬들의 시선을 집중시켰다.</div><span class="tl-pill">코첼라 출연</span></div>
+      <div class="tl"><div class="tl-yr">2024. 06</div><div class="tl-head">Supernatural — 나이키 협업</div><div class="tl-body">나이키(Nike) 글로벌 캠페인 협업 싱글 발매. 패션 및 팝 컬처 아이콘으로서의 위상을 국제적으로 공고히 했다.</div><span class="tl-pill">브랜드 협업</span></div>
+      <div class="tl"><div class="tl-yr">2025</div><div class="tl-head">새로운 시작</div><div class="tl-body">ADOR와의 전속 계약 종료 이후 새로운 국면을 맞이했다. 팬들과의 꾸준한 소통을 이어가며 뉴진스만의 감성으로 새로운 챕터를 써 내려가고 있다.</div><span class="tl-pill">새로운 챕터</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- CONCERTS
+  ★ 공연 추가 방법 ★
+  아래 concert-row를 복사해서 새 공연 정보를 입력하면 자동 표시됩니다.
+  완료된 공연: c-done / 예정 공연: c-soon
+-->
+<section class="section" id="concerts">
+  <div class="container">
+    <p class="s-label fi">Concerts & Tours</p>
+    <h2 class="s-title fi">함께한<br><em>무대들</em></h2>
+    <div>
+      <div class="concert-row"><div class="c-date">2022. 10. 08</div><div><div class="c-name">1st Concert "Bunnies Camp"</div><div class="c-venue">올림픽공원 올림픽홀 · 서울, 대한민국</div></div><span class="c-badge c-done">완료</span></div>
+      <div class="concert-row"><div class="c-date">2023. 02~03</div><div><div class="c-name">Fan Meeting "Bunnies Camp 2023 Tokyo Dome"</div><div class="c-venue">도쿄돔 · 도쿄, 일본</div></div><span class="c-badge c-done">완료</span></div>
+      <div class="concert-row"><div class="c-date">2023. 09. 15~17</div><div><div class="c-name">2nd Concert "Bunnies Camp 2023"</div><div class="c-venue">KSPO돔 · 서울, 대한민국</div></div><span class="c-badge c-done">완료</span></div>
+      <div class="concert-row"><div class="c-date">2023. 10~11</div><div><div class="c-name">World Tour "Bunnies Camp 2023 US"</div><div class="c-venue">뉴욕 · 로스앤젤레스 · 시카고 · 미국</div></div><span class="c-badge c-done">완료</span></div>
+      <div class="concert-row"><div class="c-date">2024. 04. 14</div><div><div class="c-name">Coachella Valley Music and Arts Festival</div><div class="c-venue">엠파이어 폴로 클럽 · 인디오, 캘리포니아, 미국</div></div><span class="c-badge c-done">완료</span></div>
+      <div class="concert-row"><div class="c-date">2024. 09~10</div><div><div class="c-name">World Tour "Right Now"</div><div class="c-venue">서울 · 방콕 · 싱가포르 · 런던 · 파리</div></div><span class="c-badge c-done">완료</span></div>
+      <!-- 여기에 새 공연 추가하세요 ↓ -->
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- GUESTBOOK -->
+<section class="section gb-section" id="guestbook">
+  <div class="container">
+    <p class="s-label fi">Fan Guestbook</p>
+    <h2 class="s-title fi">뉴진스에게<br><em>한마디</em></h2>
+    <div class="gb-grid">
+      <div>
+        <div class="gb-form">
+          <label class="gb-lbl">메시지</label>
+          <textarea class="gb-input" id="gb-msg" placeholder="뉴진스에게 하고 싶은 말을 남겨주세요 🐰&#10;모든 메시지는 익명으로 게시됩니다."></textarea>
+          <button class="gb-btn" id="gb-btn" onclick="postMsg()">🐰 익명으로 남기기</button>
+          <div class="gb-cd" id="gb-cd"></div>
+        </div>
+      </div>
+      <div>
+        <div class="gb-feed" id="gb-feed">
+          <div style="text-align:center;padding:40px 0;font-size:0.8rem;color:var(--muted);">첫 번째 메시지를 남겨주세요 🐰</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">New<em>Jeans</em></div>
+  <div class="f-text">
+    뉴진스 비공식 팬 아카이브 · Unofficial Fan Archive<br>
+    All rights belong to ADOR, HYBE, and respective rights holders.<br>
+    이 사이트는 팬이 제작한 비공식 사이트입니다.<br><br>
+    🐰 민지 · 하니 · 다니엘 · 해린 · 혜인 🐰
+  </div>
+  <div class="f-update" id="f-update">Last Updated: —</div>
+</footer>
+
+<!-- PLAYER -->
+<div class="player">
+  <div class="p-info">
+    <div class="p-song" id="p-song">Attention</div>
+    <div class="p-artist">NewJeans · ADOR</div>
+  </div>
+  <div class="p-controls">
+    <button class="p-btn" onclick="prevSong()">◀◀</button>
+    <button class="p-play" id="p-play" onclick="togglePlay()">▶</button>
+    <button class="p-btn" onclick="nextSong()">▶▶</button>
+  </div>
+  <div class="p-progress">
+    <div class="p-bar" onclick="seek(event)"><div class="p-fill" id="p-fill"></div></div>
+    <div class="p-time"><span id="p-cur">0:00</span><span id="p-dur">3:20</span></div>
+  </div>
+  <div class="p-vol">
+    <span class="p-vol-lbl">볼륨</span>
+    <input type="range" min="0" max="100" value="65">
+  </div>
+</div>
+
+<script>
+// PARTICLES
+(function(){
+  const pc=document.getElementById('pc');
+  for(let i=0;i<28;i++){
+    const d=document.createElement('div');d.className='p-dot';
+    d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${6+Math.random()*10}s;--delay:${Math.random()*8}s;--op:${0.2+Math.random()*0.5}`;
+    pc.appendChild(d);
+  }
+})();
+
+// VIDEO MODAL
+function openVideo(id){
+  const m=document.getElementById('vmodal');
+  document.getElementById('vframe').src=`https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+  m.style.display='flex';document.body.style.overflow='hidden';
+}
+function closeVideo(){
+  document.getElementById('vframe').src='';
+  document.getElementById('vmodal').style.display='none';
+  document.body.style.overflow='';
+}
+document.getElementById('vmodal').addEventListener('click',function(e){if(e.target===this)closeVideo();});
+
+// PLAYER
+const SONGS=[
+  {t:'Attention',d:200},{t:'Hype Boy',d:213},{t:'Hurt',d:194},{t:'Cookie',d:192},
+  {t:'Ditto',d:245},{t:'OMG',d:229},{t:'Super Shy',d:160},{t:'ETA',d:197},
+  {t:'Cool With You',d:188},{t:'Get Up',d:173},{t:'ASAP',d:198},
+  {t:'How Sweet',d:205},{t:'Bubble Gum',d:183},{t:'Supernatural',d:214},
+  {t:'Right Now',d:176},{t:'Manito',d:180}
+];
+let si=0,ct=0,playing=false,iv=null;
+function fmt(s){return`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`}
+function rp(){
+  const s=SONGS[si];
+  document.getElementById('p-song').textContent=s.t;
+  document.getElementById('p-dur').textContent=fmt(s.d);
+  document.getElementById('p-cur').textContent=fmt(ct);
+  document.getElementById('p-fill').style.width=(ct/s.d*100)+'%';
+  document.querySelectorAll('#mtrack span').forEach(el=>{el.classList.toggle('now',el.textContent===s.t);});
+}
+function togglePlay(){
+  playing=!playing;
+  document.getElementById('p-play').textContent=playing?'⏸':'▶';
+  if(playing){iv=setInterval(()=>{ct++;if(ct>=SONGS[si].d){ct=0;si=(si+1)%SONGS.length;}rp();},1000);}
+  else clearInterval(iv);
+}
+function nextSong(){si=(si+1)%SONGS.length;ct=0;rp();}
+function prevSong(){si=(si-1+SONGS.length)%SONGS.length;ct=0;rp();}
+function seek(e){ct=Math.floor(e.offsetX/e.currentTarget.offsetWidth*SONGS[si].d);rp();}
+setInterval(()=>{if(!playing){si=(si+1)%SONGS.length;ct=0;rp();}},30000);
+rp();
+
+// GUESTBOOK
+const GBK='nj_gb_v4',CDK='nj_cd_v4',CDT=3600000;
+function gms(){return JSON.parse(localStorage.getItem(GBK)||'[]');}
+function sms(a){localStorage.setItem(GBK,JSON.stringify(a));}
+function chkCD(){const l=parseInt(localStorage.getItem(CDK)||'0'),n=Date.now();if(n-l<CDT){const r=CDT-(n-l);return{locked:true,rem:`${Math.floor(r/60000)}분 ${Math.floor((r%60000)/1000)}초`};}return{locked:false};}
+function renderFeed(){
+  const ms=gms(),el=document.getElementById('gb-feed');
+  if(!ms.length){el.innerHTML='<div style="text-align:center;padding:40px 0;font-size:0.8rem;color:var(--muted)">첫 번째 메시지를 남겨주세요 🐰</div>';return;}
+  el.innerHTML=ms.slice().reverse().map(m=>`<div class="gb-card"><div class="gb-text">${m.t.replace(/</g,'&lt;')}</div><div class="gb-meta"><span class="gb-anon">익명 버니 🐰</span><span>${m.d}</span></div></div>`).join('');
+}
+function postMsg(){
+  const cd=chkCD();if(cd.locked){document.getElementById('gb-cd').textContent=`⏳ ${cd.rem} 후에 다시 작성할 수 있어요`;return;}
+  const t=document.getElementById('gb-msg').value.trim();if(!t)return;
+  const ms=gms();ms.push({t,d:new Date().toLocaleString('ko-KR')});sms(ms);
+  localStorage.setItem(CDK,Date.now());
+  document.getElementById('gb-msg').value='';renderFeed();startCD();
+}
+function startCD(){
+  const el=document.getElementById('gb-cd'),btn=document.getElementById('gb-btn');
+  const tick=()=>{const cd=chkCD();if(cd.locked){el.textContent=`⏳ ${cd.rem} 후에 다시 작성할 수 있어요`;btn.disabled=true;setTimeout(tick,1000);}else{el.textContent='';btn.disabled=false;}};
+  tick();
+}
+if(chkCD().locked)startCD();
+renderFeed();
+
+// LAST UPDATED
+document.getElementById('f-update').textContent='Last Updated: '+new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
+
+// INTERSECTION OBSERVER
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08});
+document.querySelectorAll('.tl,.member-feature,.video-card,.concert-row,.fi').forEach(el=>io.observe(el));
+document.querySelectorAll('.video-card').forEach((el,i)=>el.style.transitionDelay=(i*0.1)+'s');
+</script>
+</body>
+</html>
