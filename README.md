@@ -4,6 +4,11 @@
 > An unofficial fan archive site crafted with love by a Bunnie.
 
 ---
+아래 링크로 바로 접속해서 사용할 수 있어요. 아무것도 설치 안 해도 됩니다.
+
+```
+https://bigad2007.github.io/New-Jeans/
+```
 
 ## ⚠️ 중요 고지 / Important Notice
 
