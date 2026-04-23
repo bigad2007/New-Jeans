@@ -1,4 +1,4 @@
-# 🐰 NewJeans — Official Fan Archive
+# 🐰 NewJeans — Fan Archive
 
 > 뉴진스를 사랑하는 팬이 직접 만든 비공식 팬 아카이브 사이트입니다.  
 > An unofficial fan archive site crafted with love by a Bunnie.
